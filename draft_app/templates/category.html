@@ -1,0 +1,23 @@
+{% extends 'base.html'%}
+
+{% block body %}
+
+	<form class="search_bar" method="get" action="/category/" enctype="multipart/form-data">
+		<!-- {% csrf_token %} -->
+		<input type="text" name="name" placeholder="Search name">
+		<button type="submit">search</button>
+	</form>
+
+	<div class="category_groups">
+		{% for category in form  %}
+			<a href="/category/{{category.id}}/">
+			<div class="category" style="background-image: url('{{ category.image }}');">
+				<div class="category_name">
+					{{ category.name }}
+				</div>
+			</div>
+			</a>
+
+		{% endfor %}
+	</div>
+{% endblock %}

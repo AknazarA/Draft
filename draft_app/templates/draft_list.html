@@ -1,0 +1,31 @@
+{% extends 'base.html'%}
+
+{% block body %}
+
+	<form class="search_bar" method="get" action="/filter/category/" enctype="multipart/form-data">
+		<!-- {% csrf_token %} -->
+		<input type="text" name="name" placeholder="Search name">
+		<button type="submit">search</button>
+	</form>
+
+	<div class="termin_groups">
+
+		<div class="termin_list">
+			<p id="termins_header_id">Termins</p>
+			{% for termin in termins  %}
+
+
+				<div class="termin">
+					<a href="/termin/{{termin.id}}/">
+					<div class="termin_name">
+						{{ termin.abbreviation }} <!-- - {{ termin.longed }} -->
+					</div>
+					</a>
+				</div>
+
+
+			{% endfor %}
+		</div>
+
+	</div>
+{% endblock %}
