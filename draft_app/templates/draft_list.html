@@ -2,6 +2,11 @@
 
 {% block body %}
 
+
+	<div class="bar">
+		<a href="/category/"><label class="label_class">categories</label></a>
+	</div>
+
 	<form class="search_bar" method="get" action="/filter/category/" enctype="multipart/form-data">
 		<!-- {% csrf_token %} -->
 		<input type="text" name="name" placeholder="Search name">

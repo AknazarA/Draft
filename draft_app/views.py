@@ -27,12 +27,13 @@ class CategoryViewSet(viewsets.ViewSet):
             queryset = Category.objects.all()
         serializer = CategorySerializer(queryset, many=True)
 
-        # print(serializer.data)
         form = serializer.data
         if form == []:
             form = [{'name': "No results"}]
             # print(form)
-        return render(request, self.template_category, {"form": form})
+
+        create_form = CategoryForm(None)
+        return render(request, self.template_category, {"form": form, "create_form": create_form})
 
 
     @extend_schema(request=CategorySerializer, responses=CategorySerializer)
@@ -40,7 +41,7 @@ class CategoryViewSet(viewsets.ViewSet):
         serializer = CategorySerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response('Category is created', status=status.HTTP_201_CREATED)
+            return self.list(request)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     @extend_schema(request=None, responses=CategorySerializer)

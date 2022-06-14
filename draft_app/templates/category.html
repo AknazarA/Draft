@@ -2,22 +2,67 @@
 
 {% block body %}
 
-	<form class="search_bar" method="get" action="/category/" enctype="multipart/form-data">
-		<!-- {% csrf_token %} -->
-		<input type="text" name="name" placeholder="Search name">
-		<button type="submit">search</button>
-	</form>
+
+
+
+	<div class="bar">
+		<a href="/category/"><label class="label_class">categories</label></a>
+		<label id="create_category" class="label_class">create</label>
+	</div>
+
+	<div class="search_bar">
+		<form  method="get" action="/category/" enctype="multipart/form-data">
+			<!-- {% csrf_token %} -->
+
+			<input type="text" name="name" placeholder="Search name">
+			<button type="submit">search</button>
+		</form>
+	</div>
+
+
+
 
 	<div class="category_groups">
 		{% for category in form  %}
 			<a href="/category/{{category.id}}/">
-			<div class="category" style="background-image: url('{{ category.image }}');">
-				<div class="category_name">
-					{{ category.name }}
+				<div class="category" style="background-image: url('{{ category.image }}');">
+					<div class="category_name">
+						{{ category.name }}
+					</div>
 				</div>
-			</div>
 			</a>
 
 		{% endfor %}
 	</div>
+
+	<div id="black_screen_id" class="black_screen show">
+		<form id="form-id" class="create_form" action="" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			{% for field in create_form %}
+				<div class="create_category_field">
+					{{ field.label }}: {{ field }}
+				</div>
+			{% endfor %}
+			<button>create</button>
+		</form>
+		<button id="btn_close">x</button>
+	</div>
+
+	<script type="text/javascript">
+		const create_category = document.querySelector('#create_category')
+		const form = document.querySelector('#black_screen_id')
+
+		const close = document.querySelector('#btn_close')
+
+		create_category.addEventListener('click', () => {
+			form.classList.remove('show')
+			// btn.classList.toggle('a'),
+		})
+
+		close.addEventListener('click', () => {
+			form.classList.add('show')
+			// btn.classList.toggle('a'),
+		})
+
+	</script>
 {% endblock %}

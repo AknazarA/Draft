@@ -24,6 +24,31 @@ input{
 	color: #000;
 }
 
+.bar{
+	position: fixed;
+
+	top: 15px;
+	left: 80px;
+
+	display: flex;
+	flex-direction: row;
+	/*left: 100px;*/
+
+	z-index: 2;
+}
+
+.label_class{
+	font-size: 20px;
+	color: white;
+	margin-right: 20px;
+	/*z-index: 2;*/
+}
+
+
+.label_class:hover{
+	color: #8bcdf3;
+}
+
 .search_bar{
 	position: fixed;
 	/*position: absolute;*/
@@ -34,10 +59,11 @@ input{
 	background-color: #123;
 
 	display: flex;
+	flex-direction: row;
 	justify-content: center;
 	align-items: center;
 
-	z-index: 100;
+	z-index: 1;
 }
 
 .category_groups{
@@ -188,8 +214,78 @@ input{
 */
 
 
+.black_screen.show{
+	display: none;
+}
 
 
+.black_screen{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+
+	bottom: 0;
+	left: 0;
+
+	background-color: #0009;
+	overflow: hidden;
+
+	z-index: 100;
+}
+
+
+#btn_close{
+	position: absolute;
+	top: 34%;
+	left: calc(34% + 390px);
+
+	font-weight: bold;
+	border-radius: 5px;
+	background-color: #125555;
+	color: orange;
+}
+
+
+.create_category_field{
+	margin: 10px;
+	float: left;
+	color: white;
+}
+
+.create_category_field input{
+	width: 80%;
+	border-radius: 5px;
+}
+
+
+
+.create_form{
+	position: absolute;
+	background-color: #125555;
+	width: 390px;
+	height: 180px;
+
+	display: flex;
+	flex-direction: column;
+	/*align-items: center;*/
+	justify-content: center;
+
+	border-radius: 5px;
+
+	top: 35%;
+	left: 35%;
+}
+
+
+.create_form button{
+	position: relative;
+	left: 35%;
+
+	border-radius: 5px;
+
+	margin-top: 20px;
+	width: 30%;
+}
 
 
 
