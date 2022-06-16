@@ -21,3 +21,5 @@ class TerminModelTest(TestCase):
 
     def test_termin_str_representation(self):
         self.assertEqual(str(self.termin), self.termin.title)
+
+
