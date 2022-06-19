@@ -1,5 +1,13 @@
 {% extends 'base.html'%}
 
+
+{% block head %}
+
+	<title>Steasy</title>
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/monokai-sublime.min.css"> -->
+
+{% endblock %}
+
 {% block body %}
 
 
@@ -31,6 +39,62 @@
 
 			{% endfor %}
 		</div>
-
 	</div>
+
+	<div class="post_groups">
+		{% for post in posts  %}
+
+			<div class="post">
+				{{ post.title }}
+			</div>
+
+
+		{% endfor %}
+	</div>
+
+<!-- 	<div class="tool_groups">
+
+		{% for tool in tools  %}
+
+			<div class="tool">
+				{{ tool.title }}
+			</div>
+
+
+		{% endfor %}
+	</div> -->
+<!--
+	<div class="check">
+		<pre><code>def func(A):
+    result = 0
+    n = len(A)
+    while n > 1:
+        n = n/2
+        result = result + min(A[1,...,n])
+    return result</code></pre>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+	<script>hljs.highlightAll();</script> -->
+
+
+<!--     <script type="text/javascript">
+        window.onload = function(){
+            var codeElement = document.getElementById('python_code');
+            var code = codeElement.innerText;
+
+            codeElement.innerHTML = "";
+
+            var codeMirror = CodeMirror(
+              codeElement,
+              {
+                value: code,
+                mode: "python",
+                theme: "default",
+                lineNumbers: true,
+                readOnly: true
+              }
+            );
+        };
+    </script> -->
 {% endblock %}

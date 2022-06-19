@@ -4,7 +4,7 @@ stages:
   - deploy
 
 django tests:
-  stage: tests
+  stage: test
   image: python:3-alpine
   script:
     - pip install -r requirements.txt

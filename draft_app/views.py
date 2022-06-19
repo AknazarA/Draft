@@ -47,8 +47,15 @@ class CategoryViewSet(viewsets.ViewSet):
     @extend_schema(request=None, responses=CategorySerializer)
     def retrieve(self, request, pk=None):
         draft = Termin.objects.filter(category=pk)
+        posts = Post.objects.filter(category=pk, posttype='post')
+        tools = Post.objects.filter(category=pk, posttype='tool')
+
+
         termins_serializer = TerminSerializer(draft, many=True)
-        return render(request, 'draft_list.html', {"termins": termins_serializer.data})
+        posts_serializer = PostSerializer(posts, many=True)
+        tools_serializer = PostSerializer(tools, many=True)
+
+        return render(request, 'draft_list.html', {"termins": termins_serializer.data, "posts": posts_serializer.data, "tools": tools_serializer.data})
 
     @extend_schema(request=CategorySerializer, responses=CategorySerializer)
     def partial_update(self, request, pk=None):
