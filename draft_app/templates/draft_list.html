@@ -24,9 +24,8 @@
 	<div class="termin_groups">
 
 		<div class="termin_list">
-			<p id="termins_header_id">Termins</p>
+			<a href="/termin/"><p id="termins_header_id">Termins</p></a>
 			{% for termin in termins  %}
-
 
 				<div class="termin">
 					<a href="/termin/{{termin.id}}/">
@@ -35,7 +34,6 @@
 					</div>
 					</a>
 				</div>
-
 
 			{% endfor %}
 		</div>
@@ -52,7 +50,8 @@
 		{% endfor %}
 	</div>
 
-<!-- 	<div class="tool_groups">
+	<div class="tool_groups">
+		<p id="tools_header_id">Tools</p>
 
 		{% for tool in tools  %}
 
@@ -62,7 +61,7 @@
 
 
 		{% endfor %}
-	</div> -->
+	</div>
 <!--
 	<div class="check">
 		<pre><code>def func(A):

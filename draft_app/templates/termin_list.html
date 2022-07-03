@@ -1,0 +1,33 @@
+{% extends 'base.html'%}
+
+{% block body %}
+
+
+	<div class="bar">
+		<a href="/category/"><label class="label_class">categories</label></a>
+		<label id="create_category" class="label_class">create</label>
+	</div>
+
+	<div class="search_bar">
+		<form  method="get" action="/termin/" enctype="multipart/form-data">
+			<!-- {% csrf_token %} -->
+
+			<input type="search" name="title" placeholder="Search termin">
+			<button type="submit">search</button>
+		</form>
+	</div>
+
+
+
+
+	<div class="termin_page_list">
+		{% for termin in form  %}
+			<a href="/termin/{{termin.id}}/">
+				<div class="termin_page_termin">
+					{{ termin.title }}
+				</div>
+			</a>
+
+		{% endfor %}
+	</div>
+{% endblock %}

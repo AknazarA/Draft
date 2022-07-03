@@ -1,3 +1,9 @@
+/**{
+	box-sizing: border-box;
+	background: rgb(100 0 0 / 0.1) !important;
+}
+*/
+
 body{
 	width: 100%;
  	height: 100%;
@@ -128,8 +134,8 @@ input{
  	flex-wrap: wrap;
 }
 
-.termin_groups:hover, .termin_list:hover{
- 	background-color: #123;
+.termin_list:hover{
+ 	background-color: #234;
 }
 
 .termin_list:hover #termins_header_id{
@@ -160,7 +166,10 @@ input{
 
 	padding: 5px;
 
- 	/*background-image: linear-gradient(#f0fff0, #f0fff0);*/
+	overflow-y: auto;
+	overflow-x: hidden;
+
+ 	/*background-image: linear-gradient(#ff9, #ff9f00);*/
  	background-color: #8bcdf3;
 }
 
@@ -293,13 +302,13 @@ input{
 .post_groups{
 	position: absolute;
 
-	top: 60px;
+	top: calc(50px + 20%);
 	left: 20%;
 
-	width: calc(60% - 10px);
-	min-height: calc(100% - 67px);
+	width: calc(80% - 4px);
+	min-height: calc(40% - 67px);
 
-	/*background-color: #125555;*/
+	/*background-color: #234;*/
 
 	display: flex;
 	/*flex-direction: row;*/
@@ -309,12 +318,10 @@ input{
 .post{
 	border-radius: 5px;
 
-
 	background-color: #8bcdf3;
 
-
-	height: 50px;
-	width: 30%;
+	height: 80px;
+	width: 31%;
 
 	display: flex;
 	align-items: center;
@@ -329,7 +336,7 @@ input{
 
 .post:hover{
 	color: #0FF;
-	background-color: #123;
+	background-color: #234;
 	box-shadow: 0px 0px 15px #8bcd00;
 }
 
@@ -339,17 +346,236 @@ input{
 .tool_groups{
  	position: absolute;
  	top: 60px;
- 	right: 0px;
+ 	left: 20%;
 
- 	width: 20%;
- 	min-height: calc(100% - 60px);
+ 	margin-top: 4px;
 
- 	/*background-image: linear-gradient(to bottom right, #8bcdf3, #125555);*/
+ 	width: 80%;
+ 	min-height: 100px;
+
+ 	padding-top: 10px;
+
+ 	background-color: #234;
+
+ 	overflow-x: scroll;
+ 	white-space: nowrap;
+}
+
+.tool{
+
+	display: inline-block;
+
+	background-color: #F45;
+	color: white;
+
+	min-width: 100px;
+	height: 40px;
+
+	border-radius: 5px;
+	padding: 5px;
+
+	margin: 5px;
+}
+
+
+#tools_header_id{
+
+	position: relative;
+
+	bottom: 0px;
+
+	font-weight: bold;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	width: 100px;
+	height: 10px;
+
+	color: #000;
+	margin: 5px;
+
+	padding-bottom: 5px;
+	padding-top: 5px;
+
+	border-radius: 5px;
+
+	background-color: #fff;
 }
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* width */
+::-webkit-scrollbar, ::-webkit-scrollbar-track, ::-webkit-scrollbar-thumb {
+  width: 2px;
+  height: 2px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #200020;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: white;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #0FF5;
+}
+
+
+
+
+
+.termin_page_list{
+	position: absolute;
+	top: 60px;
+	left: 0px;
+
+	width: 100%;
+	height: calc(100% - 60px);
+
+	box-sizing: border-box;
+
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+
+	padding: 20px;
+}
+
+.termin_page_termin{
+	width: 23vw;
+	height: 20px;
+
+	/*background-color: cyan;*/
+
+	font-weight: bold;
+
+	overflow-x: hidden;
+	border-radius: 10px;
+
+	text-align: center;
+	margin: 5px;
+
+	transition: 0.5s;
+}
+
+.termin_page_termin:hover{
+	padding: 8px;
+	box-shadow: 0px 0px 10px black;
+
+	transition: 0.5s;
+}
+
+
+
+
+
+.termin_page{
+	position: absolute;
+	top: 60px;
+	left: 0px;
+
+	width: 100%;
+	min-height: calc(100% - 60px);
+
+	box-sizing: border-box;
+
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+
+	padding: 20px;
+}
+
+.termin_title{
+	width: 100%;
+	height: fit-content;
+
+	text-align: center;
+
+	font-size: 44px;
+	font-weight: bold;
+
+	border: solid;
+	border-radius: 10px 10px 0px 0px;
+	/*background-color: #F45;*/
+
+	overflow-x: auto;
+}
+
+.termin_abbreviation{
+	width: 100%;
+
+	position: relative;
+
+	margin: 0px 0px 30px 0px;
+
+	font-size: 40px;
+	text-align: center;
+	text-shadow: 0px 0px 25px white;
+
+	border: solid;
+	border-color: black;
+	color: #F45;
+	background-color: black;
+
+	overflow-x: auto;
+}
+
+.termin_longed{
+	color: white;
+}
+
+.container{
+	max-width: 100%;
+	margin-top: 20px;
+}
+
+.termin_image{
+	float: right;
+	border-radius: 50px 50px 0px 50px;
+}
+
+.termin_text{
+	width: 100%;
+
+	font-weight: bold;
+	white-space: break-spaces;
+}
 
 
 

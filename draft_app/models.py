@@ -13,7 +13,7 @@ class Termin(models.Model):
     abbreviation = models.SlugField(max_length=50)
     longed = models.CharField(max_length=255)
     category = models.ManyToManyField(to=Category)
-    image = models.ImageField(upload_to="draft_images")
+    image = models.ImageField(upload_to="draft_images", null=True, blank=True)
     user = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True)
     text = models.TextField()
 

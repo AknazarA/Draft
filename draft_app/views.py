@@ -55,7 +55,9 @@ class CategoryViewSet(viewsets.ViewSet):
         posts_serializer = PostSerializer(posts, many=True)
         tools_serializer = PostSerializer(tools, many=True)
 
-        return render(request, 'draft_list.html', {"termins": termins_serializer.data, "posts": posts_serializer.data, "tools": tools_serializer.data})
+        context = {"termins": termins_serializer.data, "posts": posts_serializer.data, "tools": tools_serializer.data}
+
+        return render(request, 'draft_list.html', context)
 
     @extend_schema(request=CategorySerializer, responses=CategorySerializer)
     def partial_update(self, request, pk=None):
@@ -72,11 +74,19 @@ class CategoryViewSet(viewsets.ViewSet):
 
 
 class TerminViewSet(viewsets.ViewSet):
+
+    template_category = "termin_list.html"
+
     @extend_schema(request=None, responses=TerminSerializer)
     def list(self, request):
-        queryset = Termin.objects.all()
+        if request.GET.get('title'):
+            queryset = Termin.objects.filter(title__startswith=request.GET['title']).order_by('title')
+        else:
+            queryset = Termin.objects.all().order_by('title')
         serializer = TerminSerializer(queryset, many=True)
-        return Response(serializer.data)
+
+        context = {"form": serializer.data}
+        return render(request, self.template_category, context)
 
 
     @extend_schema(request=TerminSerializer, responses=TerminSerializer)
@@ -91,7 +101,11 @@ class TerminViewSet(viewsets.ViewSet):
     def retrieve(self, request, pk=None):
         draft = Termin.objects.get(id=pk)
         serializer = TerminSerializer(draft)
-        return Response(serializer.data)
+
+
+        context = {'form': serializer.data}
+        return render(request, 'termin.html', context)
+
 
     @extend_schema(request=TerminSerializer, responses=TerminSerializer)
     def partial_update(self, request, pk=None):
@@ -105,3 +119,23 @@ class TerminViewSet(viewsets.ViewSet):
     def destroy(self, request, pk=None):
         Termin.objects.get(id=pk).delete()
         return Response('Termin was deleted')
+
+
+class PostViewSet(viewsets.ViewSet):
+
+    def list(self, request):
+        queryset = Post.objects.all()
+        serializer = PostSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def retrieve(self, request, pk=None):
+        post = Post.objects.get(id=pk)
+        serializer = PostSerializer(queryset)
+        return Response(serializer.data)
+
+    def create(self, request):
+        serializer = PostSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response('Post is created', status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

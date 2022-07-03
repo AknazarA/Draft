@@ -1,0 +1,42 @@
+{% extends 'base.html'%}
+
+{% block body %}
+
+
+	<div class="bar">
+		<a href="/category/"><label class="label_class">categories</label></a>
+	</div>
+
+	<div class="search_bar">
+		<form  method="get" action="/termin/" enctype="multipart/form-data">
+			<!-- {% csrf_token %} -->
+
+			<input type="search" name="title" placeholder="Search termin">
+			<button type="submit">search</button>
+		</form>
+	</div>
+
+
+
+
+	<div class="termin_page">
+		<div class="termin_title">
+			{{ form.title }}
+		</div>
+		<div class="termin_abbreviation">
+			{{ form.abbreviation }} - <label class="termin_longed">{{ form.longed }}</label>
+		</div>
+
+		<div class="container">
+			{% if form.image %}
+				<img class="termin_image" src="{{ form.image }}" width="50%" height="20%">
+			{% endif %}
+			<p class="termin_text">{{ form.text }}</p>
+		</div>
+
+
+
+
+	</div>
+
+{% endblock %}
