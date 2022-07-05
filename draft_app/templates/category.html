@@ -3,12 +3,7 @@
 {% block body %}
 
 
-
-
-	<div class="bar">
-		<a href="/category/"><label class="label_class">categories</label></a>
-		<label id="create_category" class="label_class">create</label>
-	</div>
+	{% include 'bar.html' %}
 
 	<div class="search_bar">
 		<form  method="get" action="/category/" enctype="multipart/form-data">
@@ -18,7 +13,6 @@
 			<button type="submit">search</button>
 		</form>
 	</div>
-
 
 
 
@@ -49,7 +43,7 @@
 	</div>
 
 	<script type="text/javascript">
-		const create_category = document.querySelector('#create_category')
+		const create_category = document.querySelector('#create')
 		const form = document.querySelector('#black_screen_id')
 
 		const close = document.querySelector('#btn_close')

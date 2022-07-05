@@ -11,9 +11,7 @@
 {% block body %}
 
 
-	<div class="bar">
-		<a href="/category/"><label class="label_class">categories</label></a>
-	</div>
+	{% include 'bar.html' %}
 
 	<form class="search_bar" method="get" action="/filter/category/" enctype="multipart/form-data">
 		<!-- {% csrf_token %} -->

@@ -1,0 +1,23 @@
+<div class="bar">
+	<div class="bar_container" onclick="myFunction(this)">
+		<div class="bar1"></div>
+		<div class="bar2"></div>
+		<div class="bar3"></div>
+	</div>
+	<label id="create" class="create_button">create</label>
+</div>
+
+<ul class="nav_bar">
+	<a href="/category/"><li><label class="label_class">categories</label></li></a>
+	<a href="/termin/"><li><label class="label_class">termins</label></li></a>
+	<a href="/post/"><li><label class="label_class">posts</label></li></a>
+</ul>
+
+<script type="text/javascript">
+	const nav = document.querySelector('.nav_bar')
+	function myFunction(x) {
+		x.classList.toggle("change");
+		nav.classList.toggle('show');
+	}
+</script>
+
