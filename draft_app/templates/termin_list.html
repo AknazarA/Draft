@@ -27,4 +27,47 @@
 
 		{% endfor %}
 	</div>
+
+
+	<div id="black_screen_id" class="black_screen">
+		<form id="form-id" class="create_termin_form" action="" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+
+			<div class="create_termin_title">
+				<label>Title</label>
+				{{ create_form.title }}
+			</div>
+			<div class="create_termin_abbreviation">
+				<div class="abbr_long">
+					<label>Abbr</label>
+					{{ create_form.abbreviation }}
+				</div>
+
+				<div class="abbr_long">
+					<label>Long</label>
+					{{ create_form.longed }}
+				</div>
+			</div>
+
+			<div class="create_termin_category">
+				<label>Category</label>
+				{{ create_form.category }}
+			</div>
+
+			<div class="create_termin_text_image">
+				<div class="text_image">
+					<label>Body Text</label>
+					{{ create_form.text }}
+				</div>
+
+				<div class="image_text">
+					<label>Image</label>
+					{{ create_form.image }}
+				</div>
+			</div>
+
+			<button>create</button>
+		</form>
+		<button id="btn_close">x</button>
+	</div>
 {% endblock %}

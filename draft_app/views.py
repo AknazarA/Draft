@@ -46,7 +46,7 @@ class CategoryViewSet(viewsets.ViewSet):
 
     @extend_schema(request=None, responses=CategorySerializer)
     def retrieve(self, request, pk=None):
-        draft = Termin.objects.filter(category=pk)
+        draft = Termin.objects.filter(category=pk).prefetch_related('category')
         posts = Post.objects.filter(category=pk, posttype='post')
         tools = Post.objects.filter(category=pk, posttype='tool')
 
@@ -85,7 +85,9 @@ class TerminViewSet(viewsets.ViewSet):
             queryset = Termin.objects.all().order_by('title')
         serializer = TerminSerializer(queryset, many=True)
 
-        context = {"form": serializer.data}
+        create_form = TerminForm(None)
+
+        context = {"form": serializer.data, "create_form": create_form}
         return render(request, self.template_category, context)
 
 
