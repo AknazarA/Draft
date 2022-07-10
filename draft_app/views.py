@@ -4,7 +4,7 @@ from .models import *
 from .serializers import *
 from .forms import *
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from drf_spectacular.utils import extend_schema
 
@@ -41,7 +41,7 @@ class CategoryViewSet(viewsets.ViewSet):
         serializer = CategorySerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return self.list(request)
+            return redirect("/category/")
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     @extend_schema(request=None, responses=CategorySerializer)
@@ -96,7 +96,7 @@ class TerminViewSet(viewsets.ViewSet):
         serializer = TerminSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response('Termin is created', status=status.HTTP_201_CREATED)
+            return redirect("/termin/")
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     @extend_schema(request=None, responses=TerminSerializer)

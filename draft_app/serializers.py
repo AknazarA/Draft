@@ -25,9 +25,6 @@ class TerminSerializer(serializers.ModelSerializer):
         model = Termin
         fields = "__all__"
 
-    def create(self, validated_data):
-        return Termin.objects.create(**validated_data)
-
     def update(self, instance, validated_data):
         instance.title = validated_data.get('title', instance.title)
         instance.abbreviation = validated_data.get('abbreviation', instance.abbreviation)

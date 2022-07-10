@@ -29,7 +29,7 @@
 	</div>
 
 
-	<div id="black_screen_id" class="black_screen">
+	<div id="black_screen_id" class="black_screen show">
 		<form id="form-id" class="create_termin_form" action="" method="post" enctype="multipart/form-data">
 			{% csrf_token %}
 
@@ -39,7 +39,7 @@
 			</div>
 			<div class="create_termin_abbreviation">
 				<div class="abbr_long">
-					<label>Abbr</label>
+					<label>Abbreviation</label>
 					{{ create_form.abbreviation }}
 				</div>
 
@@ -66,8 +66,27 @@
 				</div>
 			</div>
 
-			<button>create</button>
+			<button class="create_termin_form_button">create</button>
 		</form>
-		<button id="btn_close">x</button>
+		<button id="btn_close_termin_form">x</button>
 	</div>
+
+	<script type="text/javascript">
+		const create_termin = document.querySelector('#create')
+		const form = document.querySelector('#black_screen_id')
+
+		const close = document.querySelector('#btn_close_termin_form')
+
+		create_termin.addEventListener('click', () => {
+			form.classList.remove('show')
+			// btn.classList.toggle('a'),
+		})
+
+		close.addEventListener('click', () => {
+			form.classList.add('show')
+			// btn.classList.toggle('a'),
+		})
+
+	</script>
+
 {% endblock %}

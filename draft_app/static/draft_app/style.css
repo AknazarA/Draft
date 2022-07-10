@@ -358,7 +358,7 @@ input{
 .create_form{
 	background-color: #125555;
 	width: 390px;
-	height: 180px;
+	height: fit-content;
 
 	display: flex;
 	flex-direction: column;
@@ -670,6 +670,13 @@ input{
 
 
 
+#btn_close_termin_form{
+	position: relative;
+
+	top: -45%;
+
+	background-color: red;
+}
 
 
 .create_termin_form{
@@ -728,6 +735,13 @@ input{
 	border-radius: 3px;
 	color: #123;
 	background-color: #8bcdf3;
+}
+
+.create_termin_form_button{
+	margin-top: 20px;
+	position: relative;
+	width: 150px;
+	left: calc(50% - 75px);
 }
 
 #id_image{
