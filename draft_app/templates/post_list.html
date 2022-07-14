@@ -9,28 +9,33 @@
 	{% endblock %}
 
 	<div class="search_bar">
-		<form  method="get" action="/category/" enctype="multipart/form-data">
+		<form  method="get" action="/post/" enctype="multipart/form-data">
 			<!-- {% csrf_token %} -->
 
-			<input type="search" name="name" placeholder="Search name">
+			<input type="search" name="title" placeholder="Search post">
 			<button type="submit">search</button>
 		</form>
 	</div>
 
 
+	<div class="post_page_list">
+		{% for post in form  %}
+			<a href="/post/{{post.id}}/">
 
-	<div class="category_groups">
-		{% for category in form  %}
-			<a href="/category/{{category.id}}/">
-				<div class="category" style="background-image: url('{{ category.image }}');">
-					<div class="category_name">
-						{{ category.name }}
+				{% if post.posttype == "post" %}
+					<div class="post_page_post">
+						{{ post.title }}
 					</div>
-				</div>
+				{% else %}
+					<div class="post_page_tool">
+						{{ post.title }}
+					</div>
+				{% endif %}
 			</a>
 
 		{% endfor %}
 	</div>
+
 
 	<div id="black_screen_id" class="black_screen show">
 		<form id="form-id" class="create_form" action="" method="post" enctype="multipart/form-data">
@@ -42,16 +47,17 @@
 			{% endfor %}
 			<button>create</button>
 		</form>
-		<button id="btn_close">x</button>
+		<button id="btn_post_close">x</button>
 	</div>
 
+
 	<script type="text/javascript">
-		const create_category = document.querySelector('#create')
+		const create_post = document.querySelector('#create')
 		const form = document.querySelector('#black_screen_id')
 
-		const close = document.querySelector('#btn_close')
+		const close = document.querySelector('#btn_post_close')
 
-		create_category.addEventListener('click', () => {
+		create_post.addEventListener('click', () => {
 			form.classList.remove('show')
 			// btn.classList.toggle('a'),
 		})
@@ -60,15 +66,6 @@
 			form.classList.add('show')
 			// btn.classList.toggle('a'),
 		})
-
-		function preview_image(event){
-		    var reader = new FileReader();
-		    reader.onload = function(){
-		        var output = document.getElementById('id_image');
-		        output.style.backgroundImage = "url('" + reader.result + "')";
-		    }
-		    reader.readAsDataURL(event.target.files[0]);
-		}
-
 	</script>
+
 {% endblock %}

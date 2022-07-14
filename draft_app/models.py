@@ -9,7 +9,7 @@ class Category(models.Model):
     	return self.name
 
 class Termin(models.Model):
-    title = models.SlugField(max_length=255)
+    title = models.CharField(max_length=255)
     abbreviation = models.SlugField(max_length=50)
     longed = models.CharField(max_length=255)
     category = models.ManyToManyField(to=Category)

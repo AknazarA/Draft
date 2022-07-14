@@ -75,7 +75,7 @@ class CategoryViewSet(viewsets.ViewSet):
 
 class TerminViewSet(viewsets.ViewSet):
 
-    template_category = "termin_list.html"
+    template_termin = "termin_list.html"
 
     @extend_schema(request=None, responses=TerminSerializer)
     def list(self, request):
@@ -88,7 +88,7 @@ class TerminViewSet(viewsets.ViewSet):
         create_form = TerminForm(None)
 
         context = {"form": serializer.data, "create_form": create_form}
-        return render(request, self.template_category, context)
+        return render(request, self.template_termin, context)
 
 
     @extend_schema(request=TerminSerializer, responses=TerminSerializer)
@@ -125,19 +125,29 @@ class TerminViewSet(viewsets.ViewSet):
 
 class PostViewSet(viewsets.ViewSet):
 
+    template_post = "post_list.html"
+
+    @extend_schema(request=None, responses=TerminSerializer)
     def list(self, request):
-        queryset = Post.objects.all()
+        if request.GET.get('title'):
+            queryset = Post.objects.filter(title__contains=request.GET['title']).order_by('title')
+        else:
+            queryset = Post.objects.all().order_by('title')
         serializer = PostSerializer(queryset, many=True)
-        return Response(serializer.data)
+
+        create_form = PostForm(None)
+
+        context = {"form": serializer.data, "create_form": create_form}
+        return render(request, self.template_post, context)
 
     def retrieve(self, request, pk=None):
         post = Post.objects.get(id=pk)
-        serializer = PostSerializer(queryset)
+        serializer = PostSerializer(post)
         return Response(serializer.data)
 
     def create(self, request):
         serializer = PostSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response('Post is created', status=status.HTTP_201_CREATED)
+            return redirect("/post/")
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

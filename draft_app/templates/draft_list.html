@@ -39,10 +39,11 @@
 
 	<div class="post_groups">
 		{% for post in posts  %}
-
-			<div class="post">
-				{{ post.title }}
-			</div>
+			<a class="post" href="/post/{{post.id}}/">
+				<div >
+					{{ post.title }}
+				</div>
+			</a>
 
 
 		{% endfor %}
@@ -52,10 +53,11 @@
 		<p id="tools_header_id">Tools</p>
 
 		{% for tool in tools  %}
-
-			<div class="tool">
-				{{ tool.title }}
-			</div>
+			<a class="tool" href="/post/{{tool.id}}/">
+				<div>
+					{{ tool.title }}
+				</div>
+			</a>
 
 
 		{% endfor %}

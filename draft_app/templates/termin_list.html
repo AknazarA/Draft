@@ -4,6 +4,9 @@
 
 
 	{% include 'bar.html' %}
+	{% block bar %}
+		<label id="create" class="create_button">create</label>
+	{% endblock %}
 
 	<div class="search_bar">
 		<form  method="get" action="/termin/" enctype="multipart/form-data">
@@ -86,6 +89,15 @@
 			form.classList.add('show')
 			// btn.classList.toggle('a'),
 		})
+
+		function preview_image(event){
+		    var reader = new FileReader();
+		    reader.onload = function(){
+		        var output = document.getElementById('id_image');
+		        output.style.backgroundImage = "url('" + reader.result + "')";
+		    }
+		    reader.readAsDataURL(event.target.files[0]);
+		}
 
 	</script>
 
