@@ -140,6 +140,21 @@ select, option{
 	z-index: 1;
 }
 
+.search_bar_form{
+	width: 500px;
+	height: 20px;
+
+	display: flex;
+	flex-direction: row;
+
+	/*background-color: red;*/
+}
+
+
+.post_checkbox{
+	color: white;
+}
+
 .create_button{
 	position: fixed;
 	right: 15%;
@@ -582,11 +597,14 @@ select, option{
 .post_page_post{
 	background-color: #8bcdf3;
 	color: black;
+	padding: 10px;
 }
 
 .post_page_tool{
 	background-color: #f45;
 	color: white;
+	padding: 10px;
+
 
 	/*border-radius: 40px 40px 40px 40px;*/
 }

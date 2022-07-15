@@ -11,10 +11,6 @@ from drf_spectacular.utils import extend_schema
 from rest_framework import viewsets
 
 
-# def bad_request(request, exception=None):
-#     return render(request, "404.html", {"form": form})
-
-
 class CategoryViewSet(viewsets.ViewSet):
 
     template_category = "category.html"
@@ -133,6 +129,15 @@ class PostViewSet(viewsets.ViewSet):
             queryset = Post.objects.filter(title__contains=request.GET['title']).order_by('title')
         else:
             queryset = Post.objects.all().order_by('title')
+
+        is_post = request.GET.get('post')
+        is_tool = request.GET.get('tool')
+        if is_tool and is_post is None:
+            queryset = queryset.filter(posttype="tool")
+        elif is_post and is_tool is None:
+            queryset = queryset.filter(posttype="post")
+
+
         serializer = PostSerializer(queryset, many=True)
 
         create_form = PostForm(None)

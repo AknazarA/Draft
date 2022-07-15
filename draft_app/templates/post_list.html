@@ -9,11 +9,18 @@
 	{% endblock %}
 
 	<div class="search_bar">
-		<form  method="get" action="/post/" enctype="multipart/form-data">
+		<form  method="get" action="/post/" enctype="multipart/form-data" class="search_bar_form">
 			<!-- {% csrf_token %} -->
 
 			<input type="search" name="title" placeholder="Search post">
+
 			<button type="submit">search</button>
+
+			<input type="radio" id="tool" name="tool" value="True">
+			<label for="tool" class="post_checkbox">Tool</label><br>
+			<input type="radio" id="post" name="post" value="True">
+			<label for="post" class="post_checkbox">Post</label><br>
+
 		</form>
 	</div>
 
