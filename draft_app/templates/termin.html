@@ -29,12 +29,19 @@
 			{% if form.image %}
 				<img class="termin_image" src="{{ form.image }}" width="50%" height="20%">
 			{% endif %}
-			<p class="termin_text">{{ form.text }}</p>
+			<p class="termin_text">{{ form.text | safe }}</p>
 		</div>
-
-
-
-
 	</div>
+<!-- 	<script type="text/javascript">
+		let termin_text = document.querySelector(".termin_text")
+
+		// let frag = new DocumentFragment();
+		// frag.append('<a href="google.com">Google</a>');
+
+		// termin_text.appendChild(frag)
+
+		termin_text.innerHTML += `{{ form.text }}`
+
+	</script> -->
 
 {% endblock %}

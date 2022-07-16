@@ -36,11 +36,6 @@ select, option{
 	font-weight: bold;
 }
 
-
-
-
-
-
 .nav_bar.show{
 	position: fixed;
 	top: 40px;
@@ -595,9 +590,11 @@ select, option{
 }
 
 .post_page_post{
-	background-color: #8bcdf3;
-	color: black;
+	background-color: #234;
+	color: white;
 	padding: 10px;
+
+	overflow-x: auto;
 }
 
 .post_page_tool{
@@ -735,6 +732,8 @@ select, option{
 .container{
 	max-width: 100%;
 	margin-top: 20px;
+
+	font-weight: bold;
 }
 
 .termin_image{
@@ -886,6 +885,7 @@ select, option{
 
 
 
+
 .check{
 
 	position: absolute;
@@ -906,3 +906,7 @@ select, option{
 	color: white;
 	font-size: 100px;
 }
+
+
+
+

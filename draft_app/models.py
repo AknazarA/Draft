@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from ckeditor.fields import RichTextField
+
 class Category(models.Model):
     name = models.SlugField(max_length=15)
     image = models.ImageField(upload_to="category_images")
@@ -15,7 +17,7 @@ class Termin(models.Model):
     category = models.ManyToManyField(to=Category)
     image = models.ImageField(upload_to="draft_images", null=True, blank=True)
     user = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True)
-    text = models.TextField()
+    text = RichTextField()
 
     def __str__(self):
     	return self.title
