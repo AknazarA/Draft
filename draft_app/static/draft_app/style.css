@@ -419,18 +419,23 @@ select, option{
 
 	background-color: #8bcdf3;
 
-	height: 80px;
+	max-height: 80px;
+	min-height: 80px;
 	width: 31%;
 
 	display: flex;
-	align-items: center;
-	justify-content: center;
+	/*align-items: center;*/
+	/*justify-content: center;*/
+
+	word-wrap: break-word;
+
+	overflow: auto;
 
 	color: black;
 	font-weight: bold;
 
 	margin: 5px;
-	padding: 5px;
+	padding: 6px;
 }
 
 .post:hover{
@@ -699,8 +704,8 @@ select, option{
 	font-size: 44px;
 	font-weight: bold;
 
-	border: solid;
-	border-radius: 10px 10px 0px 0px;
+	/*border: solid;*/
+	/*border-radius: 10px 10px 0px 0px;*/
 	/*background-color: #F45;*/
 
 	overflow-x: auto;
@@ -737,6 +742,8 @@ select, option{
 }
 
 .termin_image{
+	max-width: 50%;
+
 	float: right;
 	border-radius: 50px 50px 0px 50px;
 }
@@ -746,6 +753,7 @@ select, option{
 
 	font-weight: bold;
 	white-space: break-spaces;
+	word-wrap: break-word;
 }
 
 
@@ -824,6 +832,7 @@ select, option{
 .create_termin_category select option{
 	width: 95%;
 
+    font-weight: bold;
 	margin-bottom: 2px;
 	border-radius: 3px;
 	color: #123;

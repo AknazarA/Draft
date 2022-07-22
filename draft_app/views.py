@@ -76,14 +76,13 @@ class TerminViewSet(viewsets.ViewSet):
     @extend_schema(request=None, responses=TerminSerializer)
     def list(self, request):
         if request.GET.get('title'):
-            queryset = Termin.objects.filter(title__startswith=request.GET['title']).order_by('title')
+            queryset = Termin.objects.values('id', 'title').filter(title__startswith=request.GET['title']).order_by('title')
         else:
-            queryset = Termin.objects.all().order_by('title')
-        serializer = TerminSerializer(queryset, many=True)
+            queryset = Termin.objects.values('id', 'title').order_by('title')
+            print(queryset)
 
         create_form = TerminForm(None)
-
-        context = {"form": serializer.data, "create_form": create_form}
+        context = {"form": queryset, "create_form": create_form}
         return render(request, self.template_termin, context)
 
 
