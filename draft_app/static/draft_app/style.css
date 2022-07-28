@@ -1,8 +1,8 @@
 /**{
 	box-sizing: border-box;
 	background: rgb(100 0 0 / 0.1) !important;
-}
-*/
+}*/
+
 
 body{
 	width: 100%;
@@ -678,7 +678,7 @@ select, option{
 
 
 
-.termin_page{
+.termin_page, .termin_page_update{
 	position: absolute;
 	top: 60px;
 	left: 0px;
@@ -688,6 +688,8 @@ select, option{
 
 	box-sizing: border-box;
 
+	font-family: 'Poppins', sans-serif;
+
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
@@ -695,7 +697,11 @@ select, option{
 	padding: 20px;
 }
 
-.termin_title{
+.termin_page.show, .termin_page_update.show{
+	display: none;
+}
+
+.termin_title, .termin_title input{
 	width: 100%;
 	height: fit-content;
 
@@ -703,6 +709,8 @@ select, option{
 
 	font-size: 44px;
 	font-weight: bold;
+	font-family: 'Poppins', sans-serif;
+
 
 	/*border: solid;*/
 	/*border-radius: 10px 10px 0px 0px;*/
@@ -711,7 +719,7 @@ select, option{
 	overflow-x: auto;
 }
 
-.termin_abbreviation{
+.termin_abbreviation, .termin_abbreviation input{
 	width: 100%;
 
 	position: relative;
@@ -721,6 +729,8 @@ select, option{
 	font-size: 40px;
 	text-align: center;
 	text-shadow: 0px 0px 25px white;
+	font-family: 'Poppins', sans-serif;
+
 
 	border: solid;
 	border-color: black;
@@ -730,8 +740,30 @@ select, option{
 	overflow-x: auto;
 }
 
-.termin_longed{
+.termin_abbreviation_big, .termin_abbreviation_big input{
+	width: 100%;
+
+	padding-top: 100px;
+	padding-bottom: 100px;
+
+	position: relative;
+	font-family: 'Poppins', sans-serif;
+
+	margin: 0px 0px 30px 0px;
+
+	color: #ff5;
+	font-size: 40px;
+	text-align: center;
+	font-weight: bold;
+
+	background-color: darkred;
+
+	overflow-x: auto;
+}
+
+.termin_longed, .termin_longed input{
 	color: white;
+	font-family: 'Poppins', sans-serif;
 }
 
 .container{
@@ -750,14 +782,73 @@ select, option{
 
 .termin_text{
 	width: 100%;
+	font-weight: normal;
 
-	font-weight: bold;
-	white-space: break-spaces;
+	/*white-space: break-spaces;*/
 	word-wrap: break-word;
+}
+
+.termin_text blockquote{
+	padding: 5px;
+	font-style: italic;
+	border-radius: 20px;
+	border: solid;
+	border-width: 1px;
+	width: fit-content;
 }
 
 
 
+/*_____________ Update image ______________*/
+
+#termin_update_image{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#termin_update_image #id_image{
+	border-radius: 30px 30px 30px 30px;
+
+	border: dashed;
+	border-width: 1px;
+	border-color: black;
+
+	background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Antu_insert-image.svg/1200px-Antu_insert-image.svg.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	margin: 5px;
+}
+
+.save_updates{
+	position: fixed;
+	left: 30%;
+	bottom: 0;
+
+	font-family: 'Poppins', sans-serif;
+	font-weight: bold;
+	font-size: 20px;
+
+	border: solid;
+	border-color: white;
+
+	width: 40%;
+	padding: 10px;
+
+	background-color: #8bcd00;
+}
+
+.save_updates:hover{
+	box-shadow: 0px 0px 20px green;
+}
+
+.save_updates:active{
+	border: solid;
+	border-color: black;
+}
+
+/*_________________________________________*/
 
 
 

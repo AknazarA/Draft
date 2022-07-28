@@ -16,8 +16,8 @@ class Termin(models.Model):
     longed = models.CharField(max_length=255)
     category = models.ManyToManyField(to=Category)
     image = models.ImageField(upload_to="draft_images", null=True, blank=True)
-    user = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True)
-    text = RichTextField()
+    user = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True, blank=True)
+    text = RichTextField(null=True, blank=True)
 
     def __str__(self):
     	return self.title

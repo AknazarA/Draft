@@ -79,7 +79,7 @@ class TerminViewSet(viewsets.ViewSet):
             queryset = Termin.objects.values('id', 'title').filter(title__startswith=request.GET['title']).order_by('title')
         else:
             queryset = Termin.objects.values('id', 'title').order_by('title')
-            print(queryset)
+            # print(queryset)
 
         create_form = TerminForm(None)
         context = {"form": queryset, "create_form": create_form}
@@ -96,27 +96,30 @@ class TerminViewSet(viewsets.ViewSet):
 
     @extend_schema(request=None, responses=TerminSerializer)
     def retrieve(self, request, pk=None):
-        draft = Termin.objects.get(id=pk)
-        serializer = TerminSerializer(draft)
+        termin = Termin.objects.get(id=pk)
+        serializer = TerminSerializer(termin)
 
+        form = TerminForm(instance=termin)
 
-        context = {'form': serializer.data}
+        context = {'termin': serializer.data, 'form': form}
         return render(request, 'termin.html', context)
 
-
-    @extend_schema(request=TerminSerializer, responses=TerminSerializer)
     def partial_update(self, request, pk=None):
-        queryset = Termin.objects.get(id=pk)
-        serializer = TerminSerializer(queryset, data=request.data, partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        termin = Termin.objects.get(id=pk)
+        form = TerminForm(request.data, instance=termin)
+        if form.is_valid():
+            form.save()
+            image = request.data['image']
+            if image:
+                termin.image = image
+                termin.save()
+            return redirect(f'/termin/{pk}/')
+        else:
+            return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def destroy(self, request, pk=None):
         Termin.objects.get(id=pk).delete()
         return Response('Termin was deleted')
-
 
 class PostViewSet(viewsets.ViewSet):
 

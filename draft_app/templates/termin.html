@@ -4,6 +4,10 @@
 
 
 	{% include 'bar.html' %}
+	{% block bar %}
+		<label id="edit" class="create_button">edit</label>
+	{% endblock %}
+
 
 	<div class="search_bar">
 		<form  method="get" action="/termin/" enctype="multipart/form-data">
@@ -19,31 +23,74 @@
 
 	<div class="termin_page">
 		<div class="termin_title">
+			{{ termin.title }}
+		</div>
+		<div class={% if termin.image or termin.text %}"termin_abbreviation" {%else%} "termin_abbreviation_big" {% endif %}>
+			{{ termin.abbreviation }} - <label class="termin_longed">{{ termin.longed }}</label>
+		</div>
+
+		<div class="container">
+			{% if termin.image %}
+				<img class="termin_image" src="{{ termin.image }}" height="20%">
+			{% endif %}
+			<div class="termin_text">
+	{{ termin.text | safe }}
+			</div>
+		</div>
+	</div>
+
+	<form class="termin_page_update show" action={% url "termin_update" termin.id %} method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+		<div class="termin_title">
 			{{ form.title }}
 		</div>
-		<div class="termin_abbreviation">
+		<div class={% if form.image or form.text %}"termin_abbreviation" {%else%} "termin_abbreviation_big" {% endif %}>
 			{{ form.abbreviation }} - <label class="termin_longed">{{ form.longed }}</label>
 		</div>
 
 		<div class="container">
-			{% if form.image %}
-				<img class="termin_image" src="{{ form.image }}" height="20%">
-			{% endif %}
+			<div id="termin_update_image" class="termin_image">
+				{{ form.image }}
+				{% if termin.image %}
+					<img src="{{ termin.image }}" width="300">
+				{% endif %}
+			</div>
 			<div class="termin_text">
 	{{ form.text | safe }}
+			</div>'
+			<div class="create_termin_category">
+				{{ form.category }}
 			</div>
 		</div>
-	</div>
-<!-- 	<script type="text/javascript">
-		let termin_text = document.querySelector(".termin_text")
 
-		// let frag = new DocumentFragment();
-		// frag.append('<a href="google.com">Google</a>');
+		<button class="save_updates">SAVE</button>
+	</form>
 
-		// termin_text.appendChild(frag)
+	{% load static %}
+	<script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+	<script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
 
-		termin_text.innerHTML += `{{ form.text }}`
 
-	</script> -->
 
+	<script type="text/javascript">
+
+		const update_termin = document.querySelector('#edit')
+
+		const termin_form = document.querySelector('.termin_page')
+		const update_form = document.querySelector('.termin_page_update')
+
+		update_termin.addEventListener('click', () => {
+			termin_form.classList.toggle('show')
+			update_form.classList.toggle('show')
+		})
+
+		function preview_image(event){
+		    var reader = new FileReader();
+		    reader.onload = function(){
+		        var output = document.getElementById('id_image');
+		        output.style.backgroundImage = "url('" + reader.result + "')";
+		    }
+		    reader.readAsDataURL(event.target.files[0]);
+		}
+	</script>
 {% endblock %}
