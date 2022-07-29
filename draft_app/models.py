@@ -5,7 +5,7 @@ from ckeditor.fields import RichTextField
 
 class Category(models.Model):
     name = models.SlugField(max_length=15)
-    image = models.ImageField(upload_to="category_images")
+    image = models.ImageField(upload_to="steasy/category_images")
 
     def __str__(self):
     	return self.name
@@ -15,7 +15,7 @@ class Termin(models.Model):
     abbreviation = models.SlugField(max_length=50)
     longed = models.CharField(max_length=255)
     category = models.ManyToManyField(to=Category)
-    image = models.ImageField(upload_to="draft_images", null=True, blank=True)
+    image = models.ImageField(upload_to="steasy/draft_images", null=True, blank=True)
     user = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True, blank=True)
     text = RichTextField(null=True, blank=True)
 
@@ -38,7 +38,7 @@ class Block(models.Model):
 
 
 class ImageBlock(Block):
-	image = models.ImageField(upload_to="image_block_images")
+	image = models.ImageField(upload_to="steasy/image_block_images")
 	title = models.CharField(max_length=255)
 
 	def __str__(self):
